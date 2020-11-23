@@ -14,9 +14,14 @@ namespace Pools.Api.Services
         {
             _context = context;
         }
-        public async Task<List<Pool>> GetAllPools()
+        public async Task<IEnumerable<Pool>> GetAllPools()
         {
             return await _context.Pools.ToListAsync();
+        }
+
+        public Task<Pool> GetPoolById(int id)
+        {
+            return _context.Pools.SingleOrDefaultAsync(p => p.Id == id);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Pools.Api.Services
 {
     public interface IPoolRepository
     {
-        Task<List<Pool>> GetAllPools();
+        Task<IEnumerable<Pool>> GetAllPools();
+        Task<Pool> GetPoolById(int id);
     }
 }

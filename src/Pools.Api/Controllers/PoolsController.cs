@@ -20,22 +20,21 @@ namespace Pools.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pool>>> GetPools()
         {
-
             return Ok(await _poolRepository.GetAllPools());
         }
 
-        // [HttpGet("{id}")]
-        // public async Task<ActionResult<Pool>> GetPool(int id)
-        // {
-        //     var pool = await _context.Pool.FindAsync(id);
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Pool>> GetPool(int id)
+        {
+            var pool = await _poolRepository.GetPoolById(id);
 
-        //     if (pool == null)
-        //     {
-        //         return NotFound();
-        //     }
+            if (pool == null)
+            {
+                return NotFound($"Pool with Id {id} was not found");
+            }
 
-        //     return pool;
-        // }
+            return Ok(pool);
+        }
 
 
         // [HttpPut("{id}")]
